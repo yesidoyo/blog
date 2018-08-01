@@ -10,12 +10,38 @@ class DefaultController extends Controller
 {
     /**
      * @Route("/", name="homepage")
+     * @Route("/noticias", name="noticias")
      */
-    public function indexAction(Request $request)
+    public function tareasAction()
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Noticias');
+
+        $noticias = $repository->findAll();
+
+        return $this->render('default/noticias.html.twig', 
+            array(
+                'noticias'=>$noticias,                
+            )
+        );
+    }
+
+
+     /**
+     * @Route("/noticia/{id}", name="noticia", requirements={"id"="\d+"})
+     */
+    public function tareaAction($id)
+    {
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Noticias');
+
+        $noticia = $repository->findOneById($id);
+
+        $url_atras = $this->generateUrl('homepage');
+
+        return $this->render('default/noticia_unica.html.twig', 
+            array(
+                'noticia'=>$noticia,
+                'url_atras'=>$url_atras
+            )
+        );
     }
 }

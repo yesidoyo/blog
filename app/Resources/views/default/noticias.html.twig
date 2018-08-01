@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Noticias{% endblock %}
+
+	{% block body %}
+
+		{% for n in noticias %}
+			<a href="{{ path('noticia', {'id':n.id}) }}">        	
+				<h1>{{ n.id }} {{ n.titulo }}</h1>		
+				<img src="{{asset( n.imagen )}}"  alt="{{ n.titulo }}">
+				<p>{{ n.descripcion }}</p>
+				<p>{{ n.fecha|date("d/m/Y") }}</p>
+			</a>
+		{% endfor %}
+
+	{% endblock %}
