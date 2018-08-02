@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Noticia {{ noticia.id }} {{ noticia.titulo }}{% endblock %}
+{% block title %}Noticia{% endblock %}
 
-{% block body %}
-	<a href="{{ url_atras }}">Atrás</a>	
-				<h1>
-					{{ noticia.id }} {{ noticia.titulo }}
-				</h1>				
-				<img src="{{asset( noticia.imagen )}}"  alt="{{ noticia.titulo }}">
-				<p>{{ noticia.descripcion }}</p>
-				<p>{{ noticia.fecha|date("d/m/Y") }}</p>	
-{% endblock %}
+	{% block contenido %}
+		<a id="atras" class="btn btn-primary" href="{{ url_atras }}">ATRÁS</a>	
+		<h1>
+			{{ noticia.id }} {{ noticia.titulo }}
+		</h1>				
+		<img class="imagen" src="{{asset( noticia.imagen )}}"  alt="{{ noticia.titulo }}">
+		<p>{{ noticia.descripcion }}</p>
+		<p>{{ noticia.fecha|date("d/m/Y") }}</p>	
+	{% endblock %}
+
